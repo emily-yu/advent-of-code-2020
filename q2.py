@@ -38,12 +38,27 @@ def find_occurences(target, password, min, max):
     return False
 
 # question 1
-def valid_passwords(data):   
+def valid_passwords_range(data):   
     valid_count = 0
     for elem in data:
         is_valid = find_occurences(elem[2], elem[3], elem[0], elem[1])
         if is_valid:
             valid_count += 1
     return valid_count
+
+print("valid: ", valid_passwords_range(data))
+
+# question 2
+def valid_passwords_index(data):   
+    valid_count = 0
+    for elem in data:
+        start = elem[0] - 1
+        end = elem[1] - 1
+        target = elem[2]
+        pw = elem[3]
+        # check one equal
+        if (pw[start] == target or pw[end] == target) and not (pw[start] == target and pw[end] == target):
+            valid_count += 1
+    return valid_count
         
-print("valid: ", valid_passwords(data))
+print("valid: ", valid_passwords_index(data))
