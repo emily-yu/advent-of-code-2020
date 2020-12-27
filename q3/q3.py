@@ -12,11 +12,11 @@ data = [list(x) for x in data]
 # question 1
 print(data[0])
 print(len(data[0]))
-def count_trees(startx, starty, data):
-    x = startx
-    y = starty
-    mx = 3
-    my = 1
+def count_trees(slopex, slopey, data):
+    x = 0
+    y = 0
+    mx = slopex
+    my = slopey
 
     treecount = 0
     while y < len(data):
@@ -25,11 +25,11 @@ def count_trees(startx, starty, data):
         xcoord = x % len(data[0])
         elem = data[y][xcoord]
         if elem == '#':
-            data[y][x] = 'X'
+            # data[y][xcoord] = 'X'
             treecount += 1
-        else:
-            data[y][x] = '0'
-        print(data[y])
+        # else:
+            # data[y][xcoord] = '0'
+        # print(data[y])
         
         # increment
         x += mx
@@ -39,8 +39,17 @@ def count_trees(startx, starty, data):
 for line in data:
     print(' '.join(line))
 
-count, result = count_trees(0, 0, data)
+count, result = count_trees(3, 1, data)
 for line in result:
     print(' '.join(line))
 
+print(count)
+
+# question 2
+slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+count = 1
+for slope in slopes:
+    print(slope)
+    count *= count_trees(slope[0], slope[1], data)[0]
+    print(count)
 print(count)
